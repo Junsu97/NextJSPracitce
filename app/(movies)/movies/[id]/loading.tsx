@@ -1,3 +1,11 @@
-export default function movieDetailLoading() {
-    return <h2>Loading a movie detail...</h2>
+interface MovieDetailsLoadingProps  {
+    type: string;
 }
+
+export default function MovieDetailLoading({type} : MovieDetailsLoadingProps) {
+    return (<h2>
+            {type === 'info' ? 'Loading a movie detail...' : 'Loading a movie video...'}
+        </h2>
+    );
+}
+
