@@ -1,3 +1,5 @@
+import {MOVIE_API_URL} from "../../../../api/requestUrl/constants";
+
 type ParamProps = {
     params: {
         id: string;
@@ -7,10 +9,24 @@ type ParamProps = {
     };
 };
 
-export default async function MovieDetail({ params, searchParams }: ParamProps) {
-    const {id} = await params; // 동기적으로 접근 가능
-    const region = await searchParams; // 동기적으로 접근 가능
-    console.log(id, region); // 서버 콘솔에 출력
+const getMovie = async (id: string) => {
+    const url = `${MOVIE_API_URL}/${id}`;
+    const response = await fetch(url);
+    return response.json();
+}
 
-    return <h1>Movie {id}</h1>;
+const getVideos = async (id: string) => {
+    const url = `${MOVIE_API_URL}/${id}/videos`;
+    const response = await fetch(url);
+    return response.json();
+}
+
+export default async function MovieDetail({params, searchParams}: ParamProps) {
+    const {id} = await params;
+    // const movie = await getMovie(id);
+    // const videos = await getVideos(id);
+    const [movie, videos] = await Promise.all([getMovie(id), getVideos(id)]);
+    return (
+        <h1>{movie.title}</h1>
+    );
 }

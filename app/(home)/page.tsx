@@ -1,12 +1,15 @@
+import Link from "next/link";
+import {MOVIE_API_URL} from "../../api/requestUrl/constants";
+
 export const metadata = {
-    title : "Home"
+    title: "Home"
 }
-const URL = 'https://nomad-movies.nomadcoders.workers.dev/movies';
+
 
 // function : Movie 데이터 fetch 함수
-async function getMovies(){
+async function getMovies() {
     console.log('getMovies');
-    const response = await fetch(URL);
+    const response = await fetch(MOVIE_API_URL);
     const json = await response.json();
     return json;
 }
@@ -15,8 +18,11 @@ async function getMovies(){
 export default async function HomePage() {
     const movies = await getMovies();
     return (
-      <div>
-          {JSON.stringify(movies)}
-      </div>
+        <div>
+            {movies.map(movie => (
+                    <li key={movie.id}><Link href={`/movies/${movie.id}`}>{movie.title}</Link></li>
+                )
+            )}
+        </div>
     );
 }

@@ -17,7 +17,6 @@ export default function Navigation() {
                     <Link href={'/about-us'}>About Us</Link> {path === "/about-us" ? "🔥" : ""}
                 </li>
             </ul>
-            <button onClick={() => setCount(c => c + 1)}>{count}</button>
         </nav>
     );
 }
