@@ -4,6 +4,8 @@ const getVideos = async (id: string) => {
     const url = `${MOVIE_API_URL}/${id}/videos`;
     const response = await fetch(url);
     return response.json();
+    // await new Promise(resolve => setTimeout(resolve, 3000));
+    // throw new Error('에러에러');1
 }
 
 export default async function MovieVideos({id}:{id:string}){

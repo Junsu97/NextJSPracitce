@@ -8,4 +8,3 @@ export default function MovieDetailLoading({type} : MovieDetailsLoadingProps) {
         </h2>
     );
 }
-
