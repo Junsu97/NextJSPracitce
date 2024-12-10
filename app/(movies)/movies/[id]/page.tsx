@@ -19,7 +19,6 @@ export default async function MovieDetail({params, searchParams}: ParamProps) {
     // const videos = await getVideos(id);
     return (
         <div>
-            <h3>Movie Detail Page</h3>
             <Suspense fallback={<MovieDetailLoading type={'info'}/>}>
                 <MovieInfo id={id}/>
             </Suspense>
