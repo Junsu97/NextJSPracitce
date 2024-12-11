@@ -4,12 +4,12 @@ import {Suspense} from "react";
 import MovieDetailLoading from "./loading";
 
 type ParamProps = {
-    params: {
+    params: Promise< {
         id: string;
-    };
-    searchParams: {
+    }>;
+    searchParams: Promise<{
         [key: string]: string;
-    };
+    }>;
 };
 export async function generateMetadata({params}: ParamProps) {
     const {id} = await params;
