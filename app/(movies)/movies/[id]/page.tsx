@@ -1,4 +1,4 @@
-import MovieInfo from "../../../../components/movie-info";
+import MovieInfo, {getMovie} from "../../../../components/movie-info";
 import MovieVideos from "../../../../components/movie-videos";
 import {Suspense} from "react";
 import MovieDetailLoading from "./loading";
@@ -11,7 +11,13 @@ type ParamProps = {
         [key: string]: string;
     };
 };
-
+export async function generateMetadata({params}: ParamProps) {
+    const {id} = await params;
+    const movie = await getMovie(id);
+    return {
+        title: movie.title
+    };
+}
 
 export default async function MovieDetail({params, searchParams}: ParamProps) {
     const {id} = await params;
